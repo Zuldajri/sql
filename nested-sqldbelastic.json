@@ -145,7 +145,6 @@
     },
     "resources": [
         {
-            "condition": "[parameters('enableVA')]",
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('sqlVaStorage')]",
             "apiVersion": "2018-02-01",
