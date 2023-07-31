@@ -131,7 +131,7 @@
     },
     "variables": {
         "resourceGroupLocation": "[resourceGroup().location]",
-        "databaseNames": "[parameters('databaseNames')]",
+        "databaseNames": "[array(parameters('databaseNames'))]",
         "alertEmailAddresses": "[parameters('alertEmailAddresses')]",
         "sqlVaStorage": "[tolower(concat('sqlva', variables('uniqueStorage')))]",
         "uniqueStorage": "[concat('sa', uniqueString(resourceGroup().id, deployment().name))]",
