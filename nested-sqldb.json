@@ -316,7 +316,7 @@
         },
         {
             "type": "Microsoft.Sql/servers/databases",
-            "name": "[concat(parameters('serverName'), '/', parameters('databaseNames')[copyIndex(addDatabases)])]",
+            "name": "[concat(parameters('serverName'), '/', parameters('databaseNames')[copyIndex('addDatabases')])]",
             "location": "[variables('resourceGroupLocation')]",
             "apiVersion": "2017-10-01-preview",
             "dependsOn": [
