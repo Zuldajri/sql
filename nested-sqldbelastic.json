@@ -132,6 +132,7 @@
     "variables": {
         "resourceGroupLocation": "[resourceGroup().location]",
         "databaseNames": "[array(parameters('databaseNames'))]",
+        "alertEmailAddresses": "[array(parameters('alertEmailAddresses'))]",
         "sqlVaStorage": "[tolower(concat('sqlva', variables('uniqueStorage')))]",
         "uniqueStorage": "[concat('sa', uniqueString(resourceGroup().id, deployment().name))]",
         "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools/',parameters('serverName'), parameters('elasticPoolName'))]"
@@ -172,7 +173,7 @@
                         "state": "Enabled",
                         "disabledAlerts": [
                         ],
-                        "emailAddresses": "[parameters('alertEmailAddresses')]",
+                        "emailAddresses": "[variables('alertEmailAddresses')]",
                         "emailAccountAdmins": true
                     }
                 },
@@ -187,7 +188,7 @@
                         "recurringScans": {
                             "isEnabled": true,
                             "emailSubscriptionAdmins": true,
-                            "emails": "[parameters('alertEmailAddresses')]"
+                            "emails": "[variables('alertEmailAddresses')]"
                         }
                     },
                     "dependsOn": [
