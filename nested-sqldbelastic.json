@@ -99,11 +99,7 @@
             }
         },
         "databaseNames": {
-            "type": "array",
-            "defaultValue": [
-                "db1",
-                "db2"
-            ],
+            "type": "string",
             "metadata": {
                 "description": "The SQL Databases names."
             }
@@ -116,11 +112,7 @@
             }
         },
         "alertEmailAddresses": {
-            "type": "array",
-            "defaultValue": [
-                "user1@example.com",
-                "user2@example.com"
-            ],
+            "type": "string",
             "metadata": {
                 "description": "Email addresses for receiving alerts"
             }
