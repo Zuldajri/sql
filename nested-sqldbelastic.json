@@ -313,5 +313,16 @@
             },
             "type": "Microsoft.Sql/servers/firewallrules"
         }
-    ]
+    ],
+    "outputs": {
+        "outputdb": {
+            "type": "array",
+            "value": "[variables('databaseNames')]"
+
+        },
+        "outputemail": {
+            "type": "array",
+            "value": "[variables('alertEmailAddresses')]"
+        }
+    }
 }
