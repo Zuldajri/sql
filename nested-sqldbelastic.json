@@ -99,7 +99,7 @@
             }
         },
         "databaseNames": {
-            "type": "string",
+            "type": "array",
             "metadata": {
                 "description": "The SQL Databases names."
             }
@@ -112,7 +112,7 @@
             }
         },
         "alertEmailAddresses": {
-            "type": "string",
+            "type": "array",
             "metadata": {
                 "description": "Email addresses for receiving alerts"
             }
@@ -131,8 +131,8 @@
     },
     "variables": {
         "resourceGroupLocation": "[resourceGroup().location]",
-        "databaseNames": "[array(parameters('databaseNames'))]",
-        "alertEmailAddresses": "[array(parameters('alertEmailAddresses'))]",
+        "databaseNames": "[parameters('databaseNames')]",
+        "alertEmailAddresses": "[parameters('alertEmailAddresses')]",
         "sqlVaStorage": "[tolower(concat('sqlva', variables('uniqueStorage')))]",
         "uniqueStorage": "[concat('sa', uniqueString(resourceGroup().id, deployment().name))]",
         "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools/',parameters('serverName'), parameters('elasticPoolName'))]"
