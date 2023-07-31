@@ -138,7 +138,7 @@
             ]
         },
         "databaseNames": {
-            "type": "array",
+            "type": "string",
             "metadata": {
                 "description": "The SQL Databases names."
             }
@@ -151,7 +151,7 @@
             }
         },
         "alertEmailAddresses": {
-            "type": "array",
+            "type": "string",
             "metadata": {
                 "description": "Email addresses for receiving alerts"
             }
