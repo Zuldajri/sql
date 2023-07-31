@@ -283,7 +283,7 @@
         },
         {
             "type": "Microsoft.Sql/servers/databases",
-            "name": "[concat(parameters('serverName'), '/', parameters('databaseNames')[copyIndex()])]",
+            "name": "[concat(parameters('serverName'), '/', parameters('databaseNames')[copyIndex(addDatabasesInElasticPool)])]",
             "location": "[variables('resourceGroupLocation')]",
             "condition": "[equals(parameters('elasticPool'), 'Yes')]",
             "apiVersion": "2017-10-01-preview",
