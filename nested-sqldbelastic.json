@@ -131,8 +131,8 @@
     },
     "variables": {
         "resourceGroupLocation": "[resourceGroup().location]",
-        "databaseNames": "[createArray(parameters('databaseNames'))]",
-        "alertEmailAddresses": "[createArray(parameters('alertEmailAddresses'))]",
+        "databaseNames": "[array(parameters('databaseNames'))]",
+        "alertEmailAddresses": "[array(parameters('alertEmailAddresses'))]",
         "sqlVaStorage": "[tolower(concat('sqlva', variables('uniqueStorage')))]",
         "uniqueStorage": "[concat('sa', uniqueString(resourceGroup().id, deployment().name))]",
         "elasticPoolId": "[resourceId('Microsoft.Sql/servers/elasticpools/',parameters('serverName'), parameters('elasticPoolName'))]"
