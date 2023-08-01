@@ -138,7 +138,7 @@
             ]
         },
         "databaseNames": {
-            "type": "string",
+            "type": "array",
             "metadata": {
                 "description": "The SQL Databases names."
             }
@@ -151,7 +151,7 @@
             }
         },
         "alertEmailAddresses": {
-            "type": "string",
+            "type": "array",
             "metadata": {
                 "description": "Email addresses for receiving alerts"
             }
@@ -193,8 +193,6 @@
     "variables": {
         "resourceGroupLocation": "[resourceGroup().location]",
         "sqlVaStorage": "[tolower(concat('sqlva', variables('uniqueStorage')))]",
-        "databaseNames": "[array(parameters('databaseNames'))]",
-        "alertEmailAddresses": "[array(parameters('alertEmailAddresses'))]",
         "uniqueStorage": "[concat('sa', uniqueString(resourceGroup().id, deployment().name))]"
     },
     "resources": [
@@ -233,7 +231,7 @@
                         "state": "Enabled",
                         "disabledAlerts": [
                         ],
-                        "emailAddresses": "[variables('alertEmailAddresses')]",
+                        "emailAddresses": "[parameters('alertEmailAddresses')]",
                         "emailAccountAdmins": true
                     }
                 },
@@ -248,7 +246,7 @@
                         "recurringScans": {
                             "isEnabled": true,
                             "emailSubscriptionAdmins": true,
-                            "emails": "[variables('alertEmailAddresses')]"
+                            "emails": "[parameters('alertEmailAddresses')]"
                         }
                     },
                     "dependsOn": [
@@ -318,7 +316,7 @@
         },
         {
             "type": "Microsoft.Sql/servers/databases",
-            "name": "[concat(parameters('serverName'), '/', variables('databaseNames')[copyIndex('addDatabases')])]",
+            "name": "[format('{0}/{1}', parameters('serverName'), parameters('databaseNames')[copyIndex()])]",
             "location": "[variables('resourceGroupLocation')]",
             "apiVersion": "2017-10-01-preview",
             "dependsOn": [
@@ -333,15 +331,11 @@
                 "maxSizeBytes": "[parameters('maxSizeBytes')]",
                 "zoneRedundant": "[parameters('zoneRedundant')]",
                 "readScale": "[parameters('readScaleOut')]",
-                "readReplicaCount": "[parameters('numberOfReplicas')]",
-
-
-
-
+                "readReplicaCount": "[parameters('numberOfReplicas')]"
             },
             "copy": {
                 "name": "addDatabases",
-                "count": "[length(variables('databaseNames'))]"
+                "count": "[length(parameters('databaseNames'))]"
             }
         },
         {
